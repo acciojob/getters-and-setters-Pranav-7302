@@ -4,7 +4,7 @@ class Person {
         this._age = age;  // ✅ Fix: `_age` use kiya
     }
 
-    get Name() {
+    get name() {
         return this.name;
     }
 
@@ -42,7 +42,7 @@ window.Teacher = Teacher;
 
 // ✅ Test ke liye instance create karo
 const person = new Person("John", 25);
-console.log(person.Name); // Output: John
+console.log(person.name); // Output: John
 
 person.age = 30;  // ✅ Fix: "Age" ko "age" banaya
 console.log(person.age); // Output: 30 ✅
