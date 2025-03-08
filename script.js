@@ -1,31 +1,31 @@
 class Person {
     constructor(name, age) {
         this.name = name;
-        this.age = age;
+        this._age = age;  // ✅ Fix: `_age` use kiya
     }
 
     get Name() {
         return this.name;
     }
 
-    set Age(age) {
-        this.age = age;  // ✅ Fix: _age hata diya
+    set age(age) {  // ✅ Fix: "age" ko lowercase banaya
+        this._age = age;
     }
 
-    get Age() {
-        return this.age;  // ✅ Fix: _age hata diya
+    get age() {  // ✅ Fix: getter bhi "age" lowercase se kiya
+        return this._age;
     }
 }
 
 class Student extends Person {
     study() {
-        console.log(`${this.name} is studying`);  // ✅ Fix: Console log add kiya
+        console.log(`${this.name} is studying`);
     }
 }
 
 class Teacher extends Person {
     teach() {
-        console.log(`${this.name} is teaching`);  // ✅ Fix: Console log add kiya
+        console.log(`${this.name} is teaching`);
     }
 }
 
@@ -38,8 +38,8 @@ window.Teacher = Teacher;
 const person = new Person("John", 25);
 console.log(person.Name); // Output: John
 
-person.Age = 30;
-console.log(person.Age); // Output: 30
+person.age = 30;  // ✅ Fix: "Age" ko "age" banaya
+console.log(person.age); // Output: 30 ✅
 
 const student = new Student("Alice", 22);
 student.study();  // ✅ Output: "Alice is studying"
