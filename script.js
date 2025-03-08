@@ -9,32 +9,32 @@ class Person {
     }
 
     set Age(age) {
-        this.age = age;
+        this.age = age;  // ✅ Fix: _age hata diya
     }
 
     get Age() {
-        return this.age;
+        return this.age;  // ✅ Fix: _age hata diya
     }
 }
 
 class Student extends Person {
     study() {
-        return `${this.name} is studying`;  // ✅ Testing ke liye return kiya
+        console.log(`${this.name} is studying`);  // ✅ Fix: Console log add kiya
     }
 }
 
 class Teacher extends Person {
     teach() {
-        return `${this.name} is teaching`;  // ✅ Testing ke liye return kiya
+        console.log(`${this.name} is teaching`);  // ✅ Fix: Console log add kiya
     }
 }
 
-// ✅ Ensure Cypress can access these classes
+// ✅ Cypress ke liye ensure karo ki classes accessible hain
 window.Person = Person;
 window.Student = Student;
 window.Teacher = Teacher;
 
-// ✅ Cypress Testing ke liye Sample Instances
+// ✅ Test ke liye instance create karo
 const person = new Person("John", 25);
 console.log(person.Name); // Output: John
 
@@ -42,7 +42,7 @@ person.Age = 30;
 console.log(person.Age); // Output: 30
 
 const student = new Student("Alice", 22);
-console.log(student.study()); // Output: Alice is studying
+student.study();  // ✅ Output: "Alice is studying"
 
 const teacher = new Teacher("Bob", 50);
-console.log(teacher.teach()); // Output: Bob is teaching
+teacher.teach();  // ✅ Output: "Bob is teaching"
